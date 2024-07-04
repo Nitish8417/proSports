@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'Sequel Sans';
+    src: url('{{ "Sequel Sans Black Head.ttf" | asset_url }}') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sequel Sans';
+    src: url('{{ "Sequel Sans Roman Head.ttf" | asset_url }}') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --container-width: 88.54%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Sequel Sans Black Head', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Sequel Sans Black Head', sans-serif;
+}
+
+
+.container {
+    width: var(--container-width);
+    margin: 0 auto;
+    max-width: 1920px;
+}
