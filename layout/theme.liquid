@@ -1,24 +1,32 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-      {{ page_title }}
-      -
-      {{ shop.name }}
-    </title>
-    {{ content_for_header }}
-    <link rel="stylesheet" href="{{ 'application.css' | asset_url }}">
-    <link rel="stylesheet" href="{{ 'header.css' | asset_url }}">
-    <link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">
-    <link rel="stylesheet" href="{{ 'login.css' | asset_url }}">
-  </head>
-  <body>
-    {% section 'header' %}
-    <main role="main">
-      {{ content_for_layout }}
-    </main>
-    {% section 'footer' %}
-  </body>
-</html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>
+        {{ page_title }} - {{ shop.name }}
+      </title>
+      {{ content_for_header }}
+      
+
+      <link rel="stylesheet" href="{{ 'application.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'header.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'login.css' | asset_url }}">
+      <!-- Include jQuery -->
+      <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
+    </head>
+    <body>
+      {% section 'header' %}
+      <main role="main">
+        {{ content_for_layout }}
+      </main>
+      {% section 'footer' %}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+      <script src="{{ 'jquery-3.6.0.min.js' | asset_url }}" defer></script>
+      <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+      <script src="{{ 'swiper-bundle.min.mjs' | asset_url }}" defer></script>
+      <script src="{{ 'application.js' | asset_url }}" defer></script>
+    </body>
+  </html>
+  

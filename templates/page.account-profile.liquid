@@ -1,0 +1,57 @@
+{% layout none %}
+<main id="main" role="main">
+  <section class="account-profile">
+    <h1>{{ 'Your Profile' | t }}</h1>
+    
+    <form method="post" action="/account">
+      <input type="hidden" name="_method" value="put">
+      
+      <label for="first_name">{{ 'First Name' | t }}</label>
+      <input type="text" name="customer[first_name]" id="first_name" value="{{ customer.first_name }}" required>
+      
+      <label for="last_name">{{ 'Last Name' | t }}</label>
+      <input type="text" name="customer[last_name]" id="last_name" value="{{ customer.last_name }}" required>
+      
+      <label for="email">{{ 'Email' | t }}</label>
+      <input type="email" name="customer[email]" id="email" value="{{ customer.email }}" required>
+      
+      <input type="submit" value="{{ 'Save' | t }}">
+    </form>
+  </section>
+</main>
+
+<style>
+    .account-profile {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+      }
+      
+      .account-profile h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      
+      .account-profile label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      
+      .account-profile input[type="text"],
+      .account-profile input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+      }
+      
+      .account-profile input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+      
+</style>

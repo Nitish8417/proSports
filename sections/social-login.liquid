@@ -1,0 +1,21 @@
+<script>
+  // Replace with your actual Facebook App ID
+  var fbAppId = 'your_facebook_app_id_here';
+
+  // Replace with your actual Google Client ID
+  var googleClientId = 'your_google_client_id_here';
+
+  document.getElementById('fb-login').addEventListener('click', function () {
+    window.location.href =
+      'https://www.facebook.com/v12.0/dialog/oauth?client_id=' +
+      fbAppId +
+      '&redirect_uri=https://yourstorename.myshopify.com/auth/facebook/callback&scope=email';
+  });
+
+  document.getElementById('google-login').addEventListener('click', function () {
+    window.location.href =
+      'https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=' +
+      googleClientId +
+      '&redirect_uri=https://yourstorename.myshopify.com/auth/google/callback&scope=email%20profile';
+  });
+</script>

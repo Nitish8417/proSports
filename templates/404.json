@@ -1,11 +1,14 @@
 {
-    "name": "Template 404",
-    "layout": "custom_theme",
-    "wrapper": "div#404_template.custom-class[custom-attribute=hello]",
-    "sections": {
-        "template-404": {
-            "type": "example-404"
-        }
-    },
-    "order": ["template-404"]
+  "layout": "custom_theme",
+  "wrapper": "div#404_template.custom-class[custom-attribute=hello]",
+  "sections": {
+    "template-404": {
+      "type": "example-404",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "template-404"
+  ]
 }

@@ -34,7 +34,10 @@ h6 {
     font-family: 'Sequel Sans Black Head', sans-serif;
 }
 
-
+img{
+    width: 100%;
+    height: auto;
+}
 .container {
     width: var(--container-width);
     margin: 0 auto;

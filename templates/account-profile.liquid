@@ -1,0 +1,153 @@
+<!-- account.liquid -->
+<section>
+    <div class="account-page">
+      <div class="container">
+        <div class="main-account-page">
+          <div class="account-sidebar">
+            <div class="user-account-info">
+              <h2>Hi {{ customer.first_name }},</h2>
+              <h3>Welcome Back to Your Account</h3>
+              <p>
+                From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and
+                update you account information. Select a link below to view or edit information.
+              </p>
+            </div>
+            <ul class="account-nav">
+              <li><a href="/account">Account Information</a></li>
+              <li><a href="/account/edit" class="active">Edit Profile</a></li>
+              <li><a href="/account/change-password">Change Password</a></li>
+              <li><a href="/account/addresses">Address Book</a></li>
+              <li><a href="/account/orders">My Orders</a></li>
+              <li><a href="/account/preferences">Communication Preferences</a></li>
+              <li><a href="/account/wishlist">My Wishlist</a></li>
+              <li><a href="/account/logout">Logout</a></li>
+          </ul>
+          </div>
+  
+          <div class="account-content">
+            <h2>Contact Information</h2>
+            <p>
+              Full Name: {{ customer.first_name }}
+              {{ customer.last_name }}
+            </p>
+            <p>Email: {{ customer.email }}</p>
+            <p>Phone Number: {{ customer.phone }}</p>
+            <div>
+              <a href="/account/edit">Edit Profile</a>
+              <a href="/account/change-password">Change Password</a>
+            </div>
+            <div>
+              <div>
+                <h2>Default Billing Address</h2>
+                <p>{{ customer.default_address.address1 }}</p>
+                <p>{{ customer.default_address.city }}, {{ customer.default_address.province }}</p>
+                <p>{{ customer.default_address.zip }}</p>
+                <p>{{ customer.default_address.country }}</p>
+                <a href="/account/addresses">Edit Address</a>
+              </div>
+  
+              <div>
+                <h2>Default Shipping Address</h2>
+                <p>{{ customer.default_address.address1 }}</p>
+                <p>{{ customer.default_address.city }}, {{ customer.default_address.province }}</p>
+                <p>{{ customer.default_address.zip }}</p>
+                <p>{{ customer.default_address.country }}</p>
+                <a href="/account/addresses">Edit Address</a>
+              </div>
+            </div>
+          </div>
+          <div class="content">
+            <h2>Edit Profile</h2>
+            <form action="/account/update" method="post">
+                <label for="title">Title</label>
+                <select id="title" name="title">
+                    <option value="Mr">Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Ms">Ms</option>
+                    <option value="Dr">Dr</option>
+                </select>
+  
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" value="{{ customer.first_name }}" required>
+  
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" value="{{ customer.last_name }}" required>
+  
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" value="{{ customer.email }}" required>
+  
+                <label for="mobile_number">Mobile Number</label>
+                <input type="tel" id="mobile_number" name="mobile_number" value="{{ customer.phone }}">
+  
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" value="{{ customer.dob }}">
+  
+                <label for="phone_number">Phone Number</label>
+                <input type="tel" id="phone_number" name="phone_number" value="{{ customer.phone_number }}">
+  
+                <button type="submit">Update & Save</button>
+            </form>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <style>
+    .main-account-page {
+      display: flex;
+      gap: 20px;
+      padding: 50px 0;
+    }
+    .account-page {
+      display: flex;
+      flex-direction: row;
+    }
+  
+    .account-sidebar {
+      width: 100%;
+      max-width: 427px;
+    }
+  
+    .user-account-info {
+      padding: 30px;
+      box-shadow: 0 0 1px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .account-sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+  
+    .account-sidebar ul li {
+      margin: 10px 0;
+    }
+  
+    .account-sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+    }
+  
+    .account-content {
+      width: 75%;
+      padding: 20px;
+    }
+  
+    .account-content h2 {
+      margin-top: 0;
+    }
+  
+    .account-content p {
+      margin: 10px 0;
+    }
+  
+    .account-content a {
+      display: block;
+      margin: 10px 0;
+      text-decoration: none;
+      color: #0073e6;
+    }
+  </style>
+  

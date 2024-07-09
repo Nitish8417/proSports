@@ -21,17 +21,7 @@
             <button type="button">Sign in with Facebook</button>
             <button type="button" class="google">Sign in with Google</button>
           </div>
-        {% endform %}
-        <h2>Forgot Password</h2>
-        {% form 'recover_customer_password' %}
-          {{ form.errors | default_errors }}
-          <div class="input-group">
-            <input type="email" name="email" id="recover_customer_email" placeholder="Email Address">
-          </div>
-          <div class="input-group">
-            <input type="submit" value="Submit" class="btn">
-          </div>
-        {% endform %}
+        {% endform %}       
       </div>
       <hr>
       <div class="box">

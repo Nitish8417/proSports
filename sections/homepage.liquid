@@ -1,95 +1,60 @@
-{% comment %}
-  Simple Home Page Template
-{% endcomment %}
-
 {% schema %}
 {
-  "name": "Custom Slider",
-  "settings": [
+  "name": "Landing Page",
+  "blocks": [
     {
-      "type": "image_picker",
-      "id": "slide_1",
-      "label": "Slide 1"
-    },
-    {
-      "type": "image_picker",
-      "id": "slide_2",
-      "label": "Slide 2"
-    },
-    {
-      "type": "image_picker",
-      "id": "slide_3",
-      "label": "Slide 3"
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide Image"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt Text"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Custom Slider",
+      "name": "Default",
       "category": "Custom"
     }
   ]
 }
 {% endschema %}
-
-<div class="custom-slider">
-  {% if section.settings.slide_1 %}
-    <div class="slide"><img src="{{ section.settings.slide_1 | img_url: 'master' }}" alt="Slide 1"></div>
-  {% endif %}
-  {% if section.settings.slide_2 %}
-    <div class="slide"><img src="{{ section.settings.slide_2 | img_url: 'master' }}" alt="Slide 2"></div>
-  {% endif %}
-  {% if section.settings.slide_3 %}
-    <div class="slide"><img src="{{ section.settings.slide_3 | img_url: 'master' }}" alt="Slide 3"></div>
-  {% endif %}
-</div>
-
-<style>
-  .custom-slider {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-  }
-  .custom-slider .slide {
-    display: none;
-    position: absolute;
-    width: 100%;
-    transition: opacity 1s;
-  }
-  .custom-slider .slide.active {
-    display: block;
-    opacity: 1;
-  }
-</style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var slides = document.querySelectorAll('.custom-slider .slide');
-    var currentSlide = 0;
-    slides[currentSlide].classList.add('active');
-
-    setInterval(function () {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
-    }, 3000);
-  });
-</script>
-
-
-{% if collections['frontpage'].products.size > 0 %}
-  <div class="featured-collection">
-    <h2>{{ collections['frontpage'].title }}</h2>
-    <div class="products">
-      {% for product in collections['frontpage'].products %}
-        <div class="product">
-          <a href="{{ product.url }}">
-            <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-            <p>{{ product.title }}</p>
-          </a>
+<div class="landing-page">
+  <div class="container">
+    <div class="landing-slider">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide">
+              <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.alt_text }}">
+            </div>
+          {% endfor %}
         </div>
-      {% endfor %}
+        <!-- Add Navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
     </div>
   </div>
-{% endif %}
+</div>
 
-
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const swiper = new Swiper('.swiper', {
+      direction: 'vertical',
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  });
+</script>

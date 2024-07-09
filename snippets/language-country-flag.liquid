@@ -1,0 +1,94 @@
+<style>
+  .header-lang-switcher summary {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .header-lang-switcher details[open] summary::after {
+    content: '';
+
+    
+  }
+  
+  .header-lang-switcher summary::after {
+    content: '';
+    background-image: url('{{ 'downarrow.svg' | asset_url }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+  }
+  .header-lang-switcher ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  .header-lang-switcher li {
+    padding: 5px 10px;
+  }
+  .header-lang-switcher li:hover {
+    background: #f5f5f5;
+  }
+</style>
+
+<form method="post" action="{{ routes.localize_url }}" id="HeaderCountryForm" class="header-lang-switcher">
+  <details aria-haspopup="true" role="button">
+    <summary tabindex="0">
+      {% if localization.country.iso_code == 'IN' %}
+        <img src="{{ 'in.svg' | asset_url }}" alt="India flag" width="20" height="20">
+      {% else %}
+        <img src="{{ 'us.svg' | asset_url }}" alt="USA flag" width="20" height="20">
+      {% endif %}
+    </summary>
+
+    <ul role="list">
+      {% for country in localization.available_countries %}
+        {% if country.iso_code == 'IN' or country.iso_code == 'US' %}
+          <li tabindex="-1">
+            <a
+              class="{% if country.iso_code == localization.country.iso_code %} active{% endif %}"
+              href="#"
+              onclick="document.getElementById('country_code').value='{{ country.iso_code }}'; document.getElementById('HeaderCountryForm').submit();"
+              {% if country.iso_code == localization.country.iso_code %}
+                aria-current="true"
+              {% endif %}
+            >
+              {% if country.iso_code == 'US' %}
+                <img src="{{ 'in.svg' | asset_url }}" alt="India flag" width="20" height="20">
+                India
+              {% else %}
+                <img src="{{ 'us.svg' | asset_url }}" alt="USA flag" width="20" height="20">
+                USA
+              {% endif %}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </details>
+  <input type="hidden" name="country_code" id="country_code" value="{{ localization.country.iso_code }}">
+</form>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('HeaderCountryForm');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const countryCode = document.getElementById('country_code').value;
+      fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(new FormData(form)).toString(),
+      }).then(function () {
+        location.reload();
+      });
+    });
+  });
+</script>
